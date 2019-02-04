@@ -291,7 +291,10 @@ export default class Toolbar extends Component {
     );
   }
   render() {
-    if (this.props.readOnly && !this.props.shouldDisplayToolbarFn()) {
+    if (
+      this.props.readOnly &&
+      !this.props.shouldDisplayToolbarFn(this.props, this.state)
+    ) {
       return null;
     }
 
@@ -305,9 +308,6 @@ export default class Toolbar extends Component {
         className={toolbarClass}
         style={this.state.position}
         ref="toolbarWrapper"
-        onMouseDown={e => {
-          e.preventDefault();
-        }}
       >
         <div style={{ position: "absolute", bottom: 0 }}>
           <div
